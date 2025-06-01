@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "LOG_LEVEL": "DEBUG",
+    "configurations": [
+        {
+            "name": "Python Debugger: Module",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "main",
+            "env": {
+                "LOG_LEVEL": "info"
+            },
+            "justMyCode": true
+        }
+    ]
+}
