@@ -1,0 +1,136 @@
+1.	1743
+2.	1558
+3.	2476
+4.	1144
+5.	2310
+6.	2208
+7.	2461
+8.	2207
+9.	1647
+10.	2104 ( nice question ) monotonic stack used (prev greater,next greater)(next smaller,prev smaller)
+11.	2918
+12.	1657
+13.	1930
+14.	1438 ( sorted set or max_dq and min_dq whose left stores the curr win max and min)
+15.	2592
+16.	1578
+17.	1577
+18.	1644
+
+
+1600-1700
+1.	3350 ( pre compute longest increasing from each index then two cases first run in two different subarray so take min of both lengths second cases run withing same subarray so half of the longest at that index)
+2.	1300 (binary search)
+3.	2438 ( to convert a number to min numberof powers of 2 is just getting in binary format)
+4.	2232
+5.	1509
+6.	2567 ans = min(nums[i + (n - k - 1)] - nums[i] for i in range(k + 1)) use this pattern for the above as well
+7.	3607
+8.	2420
+9.	3153
+10.	2337 and 777 absolutely same in one we have undersore in other we have x
+11.	3397
+12.	767 ( if max freq elemen is > (n + 1) // 2 then its never possible to have adj element nto be the same
+if it is <= then do alternate sort the char by freq place the most freq elemen at even indices and once even indeices go out of bounds then start from odd
+13.	2233 min_heap always increment the smallest and then push it into min heap if 2 smallest is equal then incr =1 else its min(k,curr_smallest - next_smallest)
+14.	3290 simple take not take dp
+15.	2563 min i can go from that num max i can from that num then find index of min and max using binary search the space between them is the number of paris
+16.	974
+17.	2425
+
+
+1700-1800
+1.	1186 dp two cases we either dont delete which means dp0[i] = max(nums[i],dp[i-1] + nums[i]) i.e take curr_element or extend the prev best by adding the curr element
+or we can do atmost 1 delete that 0 or 1 which means dp1[i] = max(dp0[i-1],dp[i-1] + nums[i]) i.e delete curr element which prev best i-1 should be taken or
+prev best by deleting or not deleting + curr element
+2.	1711
+3.	2998 min steps problem where we need to convert A to B using some constatns like +1 -1 or some wts use bfs
+here nodes are the number after transformation and +-1 are the wts ALAWAYS use bfs because it gives shortest path
+4.	2381 simple array diff technique maintain a arr_diff which contains shift per index
+5.	2615 2121 and 1685 are similar
+in 1685 we have an array we need to find the sum of absolute diff between each pair of the arr here first we sort then use the techn
+in 2615 we need to find the sum of absolute differ between each pair of indices which share the same value
+eg 1,3,1,1,2] here 1 -> (0,2,3)
+so here indices can be treated as the value of an array in the above no need to sort as indices are always sorted
+the tech used is
+left_sum  0
+total_sum sum(of rray)
+for each i
+left_part = (i * arr[i]) - left_sum // here i * is used to remove the curr element i times from the total left part
+eg:
+2,3,5
+here for 5 the left sum will be 5 but 5 is also remove from each one of them hence 10 - 5 is 5
+right_part = (total_sum - left_sum - nums[i]) - (n - i - 1) * nums[i] // same as above but to get the number of element after the current element since we need to remove the curr eleemn from them this many times
+6.	3376 => if we want to try all the permuations and n is small like <= 20 then we can use bitmask dp
+here for n = 3 we have 000 so here
+for each i :
+check if the ith bit is set or not if not then set it and recurse dfs
+for n = 3 dp of size wil be 2 ^ 3 since 111 means 2 ^ 3
+7.	2771 => dp on two arrays where we want to pick index from both array based on some condition
+here in this case we wanted the prev to be smaller than the current
+so we maintain two dp
+dp0 => the longest/number of valid sequence ending at i by chossing from first array
+dp1 => the longest/number of valid sequence ending at i by choosing form second array
+8.	1497 => to find pairs sum divisible by k use following tech
+a + b % k => a % k + b % k mod k = 0 mod k => b % k = k - a mod k
+so basically need to maintain a hashtable of all the remaineds of the num in the array
+then for 0 case it can only map with 0 and if k is even the k/2 rem can only map with k/2
+but for rest pairs = mp[r] * mp[k-r]
+here r is the each remainder in the hastable used as the key
+9.	2192 => to get all the ancestors in a dag we can use topo sort
+Topo sort works because it gives us a linear order where every node is processed only after all its ancestors are known. That makes ancestor computation just a forward propagation problem instead of running DFS from each node.
+When we process the v we can add u to the ances set and also acnes of u as well
+10.	 1156 => ans soln RLE used for eg aaabaaa => 3a 1b 3a
+two cases
+we can take entire block i.e 3a and since more a is present we can add 1 to the best len so 4
+or we can take 3a 1b 3a i.e we find if immediate has 1 len and after that has the same char
+in this case best_len is 6 and since no more a is present we cant add one more a hence 6 is the base case
+11.	
+
+INSERT INTO TABLE_NAME VALUES (COL_NAME,COL_NAME_2,COL_NAME_3......)
+
+
+query        ::= "SELECT" normal_list "FROM" table_name ["WHERE" expr] ;
+
+normal_list  ::= "*" | value_list ;
+
+value_list   ::= value { "," value } ;
+
+value        ::= identifier ;
+
+table_name   ::= identifier ;
+
+expr         ::= term { ( "AND" | "OR" ) term } ;
+
+term         ::= factor | factor "IS" ["NOT"] factor | factor "=" factor ;
+
+factor       ::= identifier | literal ;
+
+literal      ::= string_literal | boolean_literal | integer_literal ;
+
+identifier   ::= letter { letter | digit | "_" } ;
+
+letter       ::= [a-zA-Z] ;
+
+digit        ::= [0-9] ;
+
+INSERT INTO table_name FROM bracked_list | SELECT_STMT
+
+bracked_list ::= "(" inner_list ")"
+
+inner_list ::= value | value_list "," value
+
+value ::= int_val | str_val | bool_val
+
+int_val ::= [0-9]+
+
+str_val ::= [a-zA-z]+
+
+bool_val ::= true | false
+
+
+
+     
+
+
+	
