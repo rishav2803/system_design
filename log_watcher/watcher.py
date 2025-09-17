@@ -23,14 +23,16 @@ def get_config_modification_handle():
 def read_last_n_lines(file_path: Path, n: int, chunk_size: int = 1024):
     with open(file_path, "rb") as f:
         f.seek(0, os.SEEK_END)
-        file_size = f.tell()
         buffer = b""
         lines = []
 
-        pos = file_size
+        pos = f.tell()
+        #since pointer is at the end tell returns the total size of the file
+        #eg pos = 2048
         while pos > 0 and len(lines) <= n:
             read_size = min(chunk_size, pos)
             pos -= read_size
+            #pos = 1024
             f.seek(pos)
             chunk = f.read(read_size)
             buffer = chunk + buffer
